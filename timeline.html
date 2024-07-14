@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timeline with Pipelines</title>
+    <style>
+      .container {
+          display: flex;
+          justify-content: space-between;
+          padding: 20px;
+          flex-direction: row-reverse;
+      }
+      .pipeline {
+      width: 10%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      }
+      .content, .images {
+      width: 45%;
+      text-align: right;
+      }
+
+      .pipeline div {
+          margin-bottom: 20px;
+          cursor: pointer;
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: linear-gradient(259deg, #2ABBC3 0.31%, #37D6A3 112.29%);
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background-color 0.3s, border-color 0.3s;
+      }
+
+      .pipeline div:hover {
+          background-color: #2980b9;
+          border-color: #1c598a;
+      }
+
+      .content > div, .images div {
+          display: none; /* Hide all sections initially */
+      }
+
+      .active {
+          display: block !important; /* Show the active section */
+      }
+
+      .images img {
+          width: 100%;
+          height: auto;
+      }
+      .title-timeline{
+          color: #0B263A;
+          text-align: center;
+          font-family: auto;
+          font-size: 53px;
+          font-weight: 700;
+      }
+      .content h4{
+      color:  #0B263A;
+      text-align: right;
+      font-family: "IBM Plex Arabic";
+      font-size: 38px;
+      }
+      .content p {
+      color: #748898;
+      text-align: right;
+      font-family: "IBM Plex Arabic";
+      font-size: 24px;
+      font-weight: 400;
+      }
+      .btn-timeline button {
+      width: 304px;
+      height: 56px;
+        background: linear-gradient(85deg, rgba(47, 165, 182, 0.99) 40.9%, rgba(37, 210, 158, 0.99) 109.88%);
+      }
+      div#image1 img {
+      width: calc(98% / 3);
+      vertical-align: middle;
+      transition: all .3s ease-in-out;
+      }
+      div#image1 img:nth-child(2){
+        position: relative;
+        z-index: 2;
+      }
+      div#image1 img:nth-child(1){
+        transform: translateX(30px);
+      }
+      div#image1 img:nth-child(3){
+        transform: translateX(-30px);
+      }
+      /* Highlight the active pipeline */
+      .pipeline .active-pipeline {
+          background-color: #2980b9;
+          border-color: #1c598a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title-timeline">
+      <h2>كيـــــــــف تعمل تروجــــــــــــــــــــينا؟</h2>
+    </div>
+    <div class="container">
+      <div class="pipeline">
+        <div onclick="showContent('section1')" class="active-pipeline"></div>
+        <div onclick="showContent('section2')"></div>
+        <div onclick="showContent('section3')"></div>
+        <div onclick="showContent('section4')"></div>
+      </div>
+
+      <div class="content">
+        <div id="section1" class="active">
+          <h4>
+            اختـــــــــــر باقتــك المناســــــــبة وأرسل لنا رابــط المتجر
+            واللوجو وسيـــــــاسة الخصوصية
+          </h4>
+          <p>
+            في تروجينا نطمح إلى الوصول لأهدافنا والتي هي أهدافك! فبمجرد وصول
+            متجرك الإلكتروني إلى أيدينا يقوم فريقنا بتطوير أحدث التقنيات ليلمع
+            بريقه وسط العالم الرقمي الحديث وذلك عن طريق إنشاء تطبيق يدعم تطور
+            متجرك خطوة بخطوة.
+          </p>
+          <div class="btn-timeline">
+            <button>
+              احصل على استشارتك المجانية الآن
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="34"
+                viewBox="0 0 32 34"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M25.4902 13.5996C26.0425 13.5996 26.4902 13.1519 26.4902 12.5996C26.4902 12.0473 26.0425 11.5996 25.4902 11.5996L6.80102 11.5996L12.5969 5.92968C12.9917 5.54347 12.9987 4.91034 12.6125 4.51555C12.2263 4.12076 11.5932 4.1138 11.1984 4.50001L3.6502 11.8841C3.45789 12.0722 3.34949 12.3299 3.34949 12.5989C3.34949 12.8679 3.45789 13.1256 3.6502 13.3137L11.1984 20.6978C11.5932 21.084 12.2263 21.0771 12.6125 20.6823C12.9987 20.2875 12.9917 19.6544 12.5969 19.2681L6.80244 13.5996L25.4902 13.5996Z"
+                  fill="white"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div id="section2">Content for section 2</div>
+        <div id="section3">Content for section 3</div>
+        <div id="section4">Content for section 4</div>
+      </div>
+
+      <div class="images">
+        <div id="image1" class="active">
+          <img src="package_2.png" alt="Image 1" />
+          <img src="package_1.png" alt="Image 1" />
+          <img src="package_3.png" alt="Image 1" />
+        </div>
+        <div id="image2"><img src="image2.jpg" alt="Image 2" /></div>
+        <div id="image3"><img src="image3.jpg" alt="Image 3" /></div>
+        <div id="image4"><img src="image4.jpg" alt="Image 4" /></div>
+      </div>
+    </div>
+
+    <script>
+      const packageImg = document.querySelector('#image1 img:nth-child(2)');
+      console.log(packageImg);
+      packageImg.addEventListener('click', ()=>{
+        const firstImg = document.querySelector('#image1 img:nth-child(1)');
+        const lastImg = document.querySelector('#image1 img:nth-child(3)');
+        firstImg.style.transform = 'translateX(0)';
+        lastImg.style.transform = 'translateX(0)';
+
+      })
+      function showContent(section) {
+          // Hide all content and images
+          document.querySelectorAll('.content div, .images div').forEach(function(div) {
+              div.classList.remove('active');
+          });
+
+          // Remove active class from all pipelines
+          document.querySelectorAll('.pipeline div').forEach(function(div) {
+              div.classList.remove('active-pipeline');
+          });
+
+          // Show the clicked section content and image
+          document.getElementById(section).classList.add('active');
+          document.getElementById('image' + section.slice(-1)).classList.add('active');
+
+          // Highlight the clicked pipeline
+          event.target.classList.add('active-pipeline');
+      }
+    </script>
+  </body>
+</html>

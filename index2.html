@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timeline with Pipelines</title>
+    <style>
+      .container {
+          display: flex;
+          justify-content: space-between;
+          padding: 20px;
+          height: 300px;
+          overflow-y: scroll;
+      }
+
+      .pipeline, .content, .images {
+          width: 30%;
+          position: relative;
+      }
+
+      .pipeline div {
+          margin-bottom: 20px;
+          cursor: pointer;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background-color: #3498db;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid #2980b9;
+          transition: background-color 0.3s, border-color 0.3s;
+      }
+
+      .pipeline div:hover {
+          background-color: #2980b9;
+          border-color: #1c598a;
+      }
+
+      .content div, .images div {
+          display: none; /* Hide all sections initially */
+      }
+
+      .active {
+          display: block; /* Show the active section */
+      }
+
+      .images img {
+          width: 100%;
+          height: auto;
+      }
+
+      /* Highlight the active pipeline */
+      .pipeline .active-pipeline {
+          background-color: #2980b9;
+          border-color: #1c598a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="timeline-container">
+      <div class="pipeline">
+        <div onclick="showContent('section1')" class="active-pipeline">1</div>
+        <div onclick="showContent('section2')">2</div>
+        <div onclick="showContent('section3')">3</div>
+        <div onclick="showContent('section4')">4</div>
+      </div>
+
+      <div class="content">
+        <div id="section1" class="active">Content for section 1</div>
+        <div id="section2">Content for section 2</div>
+        <div id="section3">Content for section 3</div>
+        <div id="section4">Content for section 4</div>
+      </div>
+
+      <div class="images">
+        <div id="image1" class="active">
+          <img src="image1.jpg" alt="Image 1" />
+        </div>
+        <div id="image2"><img src="image2.jpg" alt="Image 2" /></div>
+        <div id="image3"><img src="image3.jpg" alt="Image 3" /></div>
+        <div id="image4"><img src="image4.jpg" alt="Image 4" /></div>
+      </div>
+    </div>
+
+    <script>
+      function showContent(section) {
+          // Hide all content and images
+          document.querySelectorAll('.content div, .images div').forEach(function(div) {
+              div.classList.remove('active');
+          });
+
+          // Remove active class from all pipelines
+          document.querySelectorAll('.pipeline div').forEach(function(div) {
+              div.classList.remove('active-pipeline');
+          });
+
+          // Show the clicked section content and image
+          document.getElementById(section).classList.add('active');
+          document.getElementById('image' + section.slice(-1)).classList.add('active');
+
+          // Highlight the clicked pipeline
+          document.querySelector(`.pipeline div:nth-child(${section.slice(-1)})`).classList.add('active-pipeline');
+      }
+
+      document.getElementById('timeline-container').addEventListener('scroll', function() {
+          const container = this;
+          const sections = document.querySelectorAll('.content div');
+          let activeSection;
+
+          sections.forEach((section, index) => {
+              const rect = section.getBoundingClientRect();
+              const containerRect = container.getBoundingClientRect();
+
+              if (rect.top >= containerRect.top && rect.bottom <= containerRect.bottom) {
+                  activeSection = index + 1;
+              }
+          });
+
+          if (activeSection) {
+              showContent(`section${activeSection}`);
+          }
+      });
+    </script>
+  </body>
+</html>
